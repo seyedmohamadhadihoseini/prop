@@ -73,15 +73,16 @@ export default function Auth({authType,actionHandler}:{authType:"login"|"registe
           <Box component="form" action={formAction}  sx={{ mt: 1 }}>
           
             <TextField
-            
+              onKeyDown={e=>{
+              }}
               margin="normal"
               required = {true}
               fullWidth
-              id="email"
-              label="Email Address"
+              id="sign-email"
               name="email"
               type='email'
-            //   autoComplete="email"
+              placeholder='Email Address *'
+              autoComplete="sign-email"
               autoFocus
             />
             <TextField
@@ -89,10 +90,10 @@ export default function Auth({authType,actionHandler}:{authType:"login"|"registe
               required = {true}
               fullWidth
               name="password"
-              label="Password"
+              placeholder='Password *'
               type="password"
               id="password"
-            //   autoComplete="current-password"
+              autoComplete="current-password"
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

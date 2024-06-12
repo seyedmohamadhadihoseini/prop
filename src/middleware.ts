@@ -10,6 +10,7 @@ export default async function middleware(request: NextRequest){
     } 
     const isToAuth:boolean = pathname.startsWith("/auth");
     const isToPanel:boolean = pathname.startsWith("/dashboard");
+    const isToHome:boolean = pathname.endsWith("/");
 
     const user = await CurrentUser();
     let isUserExist = false;
@@ -19,10 +20,10 @@ export default async function middleware(request: NextRequest){
     } 
     
 
-    if(isToAuth && isUserExist){
+    if((isToAuth||isToHome) && isUserExist){
         return NextResponse.redirect(new URL("/dashboard",request.url));
     }
-    else if(isToPanel && (!isUserExist)){
+    else if((isToPanel||isToHome) && (!isUserExist)){
         return NextResponse.redirect(new URL("/auth/login",request.url));
     }
 }
