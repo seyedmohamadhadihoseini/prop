@@ -1,0 +1,15 @@
+#ticket-header-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: max-content;
+}
+#ticket-header-container button{
+    width: max-content;
+}
+#ticket-type{
+    color: black;
+    background-color: white;
+}
+#ticket-type option{
+    color: wheat;
+}

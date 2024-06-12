@@ -1,0 +1,28 @@
+
+.form-element{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    padding: 20px;
+}
+
+.form-element label{
+    margin: auto;
+    width: 100%;
+    padding-right:15px ;
+    text-align: right;
+}
+.form-element div{
+    text-align: left;
+}
+#verification-form{
+    width: 60%;
+}
+#button-div{
+    padding-top: 20px;
+    display: grid;
+    text-align: center;
+    grid-template-columns:1fr 2fr 3fr;
+}
+#birth-date *{
+    text-align: left;
+}

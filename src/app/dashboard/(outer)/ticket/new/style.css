@@ -1,0 +1,27 @@
+
+#close-pico{
+    position: relative;
+    text-align: right;
+    top:10px;
+    right: 10px;
+}
+.item-form{
+    padding: 10px;
+}
+.item-form label{
+    display: block;
+    margin-bottom: 2px;
+}
+.item-form *{
+    width: 80%;
+}
+textarea ,input , select{
+    background-color: gray;
+    border-radius: 5px;
+}
+button {
+    background-color: green;
+    padding: 12px;
+    width: 150px;
+    border-radius: 10px;
+}

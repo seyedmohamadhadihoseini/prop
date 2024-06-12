@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int             @id @default(autoincrement())
+  type          UserType        @default(Customer)
+  email         String          @unique
+  firstName     String
+  lastName      String
+  password      String
+  profile       String?
+  address       String?
+  telephone     String?
+  identity      String?
+  brithDate     DateTime?
+  verifyLevel   VerifySteps?    @default(nothing)
+  sessions      SessionSave[]
+  Ticket        Ticket[]
+  TicketMessage TicketMessage[]
+}
+
+enum VerifySteps {
+  nothing
+  Pending
+  rejected
+  Yes
+}
+
+enum UserType {
+  Customer
+  Admin
+}
+
+model confirmCode {
+  id       String @unique
+  code     String
+  email    String
+  password String
+}
+
+model SessionSave {
+  id     String @unique
+  user   User   @relation(references: [id], fields: [userId])
+  userId Int
+}
+
+model Ticket {
+  id            Int             @id @default(autoincrement())
+  accountNumber Int
+  title         String
+  content       String
+  userId        Int
+  user          User            @relation(references: [id], fields: [userId])
+  level         TicketLevel     @default(Pending)
+  attachedFile  String?
+  TicketMessage TicketMessage[]
+}
+
+model TicketMessage {
+  id         Int       @id @default(autoincrement())
+  text       String @db.LongText
+  date       DateTime?
+  isFromUser Boolean   @default(true)
+  ticketId   Int
+  ticket     Ticket    @relation(references: [id], fields: [ticketId])
+  userId     Int
+  user       User      @relation(references: [id], fields: [userId])
+}
+
+enum TicketLevel {
+  Pending
+  Answered
+  Closed
+}

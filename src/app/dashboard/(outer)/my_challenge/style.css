@@ -1,0 +1,12 @@
+.my-challenges {
+    height: 100px;
+    margin: auto;
+    background-color: #29232334;
+    border-radius: 20px;
+    position: relative;
+}
+.my-challenges h4{
+    height: 100%;
+    position: absolute;
+    top:30%;
+}

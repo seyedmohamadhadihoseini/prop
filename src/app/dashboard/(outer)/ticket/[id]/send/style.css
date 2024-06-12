@@ -1,0 +1,19 @@
+
+#ticket-send-message{
+    display: grid;
+    grid-template-columns: 7fr 1fr;
+}
+#test-id{
+    
+    background-color: black;
+}
+#ticket-send-message textarea{
+    display: block;
+    color: black;
+}
+#ticket-send-message button{
+    display: block;
+    background-color: black;
+    border-radius: 5px;
+    margin-left: 5px;
+}

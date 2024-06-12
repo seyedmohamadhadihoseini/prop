@@ -1,0 +1,26 @@
+.ticket-item {
+    background-color: #29232334;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    text-align: left;
+    font-size: medium;
+    display: grid;
+    grid-template-rows: 2fr 1fr 1fr;
+}
+.ticket-item *{
+    font-size: small;
+}
+.account-number{
+    font-size: small;
+}
+.Pending{
+    background-color: #29232334;
+}
+.Answered{
+    background-color: green;
+}
+.Closed{
+    background-color: red;
+}

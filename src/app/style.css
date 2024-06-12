@@ -1,0 +1,11 @@
+.container{
+    position: relative;
+    background-color: yellow;
+    width: 100%;
+    padding: 20px;
+}
+.inner{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
