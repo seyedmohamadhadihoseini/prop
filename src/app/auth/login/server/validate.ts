@@ -1,3 +1,4 @@
+import { Compare } from "@/services/bcrypt";
 import prisma from "@/services/singleton_prisma";
 
 export default async function ValidateLogin(email: string, password: string) {
@@ -9,7 +10,9 @@ export default async function ValidateLogin(email: string, password: string) {
                 email: email
             }
         });
-        result = user?.password === password;
+        if (user) {
+            result = await Compare(password, user.password);
+        }
     }
     return { result, user };
 }

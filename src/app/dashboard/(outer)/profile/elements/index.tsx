@@ -5,13 +5,13 @@ class PR_Elements {
         
         return <div>
             <label htmlFor="pr_name">Name</label>
-            <input type="text" defaultValue={defaultVal} className="form-control" id="pr_name" placeholder="Enter Your Name" />
+            <input type="text" name="first-name" defaultValue={defaultVal} className="form-control" id="pr_name" placeholder="Enter Your Name" />
         </div>
     }
     PR_LastName({defaultVal}:{defaultVal:string}) {
         return <div>
             <label htmlFor="pr_lastname">LastName</label>
-            <input type="text" defaultValue={defaultVal} className="form-control" id="pr_lastname" placeholder="Enter Your LastName" />
+            <input type="text" name="last-name" defaultValue={defaultVal} className="form-control" id="pr_lastname" placeholder="Enter Your LastName" />
         </div>
     }
     PR_Email({defaultVal}:{defaultVal:string}) {
@@ -50,7 +50,7 @@ class PR_Elements {
     PR_Mobile({defaultVal}:{defaultVal:any}) {
         return <div>
             <label htmlFor="pr_mobile">Mobile</label>
-            <input type="number" defaultValue={defaultVal} className="form-control" name="mobile" id="pr_mobile" placeholder="Enter Your Telephone"/>
+            <input type="string" defaultValue={defaultVal} className="form-control" name="mobile" id="pr_mobile" placeholder="Enter Your Telephone"/>
         </div>
     }
 

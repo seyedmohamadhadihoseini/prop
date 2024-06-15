@@ -1,5 +1,6 @@
 "use server";
 import FormResultState from "@/lib/types/FormResultState";
+import { Hash } from "@/services/bcrypt";
 import prisma from "@/services/singleton_prisma";
 
 export default async function ActionForResetPassword(email: string, prevState: FormResultState, formData: FormData) {
@@ -10,7 +11,8 @@ export default async function ActionForResetPassword(email: string, prevState: F
     if (password && confirm_password) {
         if (password === confirm_password) {
             result = true;
-            await ChangePasswordDb(email, password);
+            const hashedPass =await Hash(password);
+            await ChangePasswordDb(email, hashedPass);
         }
     }
 

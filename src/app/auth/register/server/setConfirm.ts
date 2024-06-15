@@ -1,4 +1,5 @@
-import  SendMail  from "@/services/email";
+import { Hash } from "@/services/bcrypt";
+import SendMail from "@/services/email";
 import prisma from "@/services/singleton_prisma";
 import { randomUUID } from "crypto";
 import { cookies } from "next/headers";
@@ -14,7 +15,8 @@ export default async function SetConfirm(email: string, password: string) {
 
     const code = generateCode();
     const sessionId = GenerateSession();
-    const pr1 = StoreToDb(sessionId, code.toString(), email, password);
+    const hashedPassword = await Hash(password);
+    const pr1 = StoreToDb(sessionId, code.toString(), email, hashedPassword);
     const pr2 = SendMail(email, "confirm code", `
         <div>
             <p>
@@ -30,7 +32,7 @@ function generateCode() {
 }
 function GenerateSession() {
     const sessionId: string = randomUUID();
-    cookies().set("sessionId__", sessionId,{secure:true,httpOnly:true});
+    cookies().set("sessionId__", sessionId, { secure: true, httpOnly: true });
     return sessionId;
 }
 async function StoreToDb(sessionId: string, code: string, email: string, password: string) {

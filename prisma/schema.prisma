@@ -31,6 +31,11 @@ model User {
   TicketMessage TicketMessage[]
 }
 
+model Admin {
+  hash String @id
+  name String
+}
+
 enum VerifySteps {
   nothing
   Pending
@@ -84,4 +89,3 @@ enum TicketLevel {
   Answered
   Closed
 }
-
