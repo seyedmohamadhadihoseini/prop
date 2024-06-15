@@ -37,8 +37,8 @@ function UserProfile({ user }: { user: User }) {
                         <div className="media">
                             <div className="avatar"><img className="align-self-start mr-3" src={`${process.env.PUBLIC_NEXT_HOST}/api/file/get_profile?name=${user.profile}`} alt="user avatar" /></div>
                             <div className="media-body">
-                                <h6 className="mt-2 user-title">Sarajhon Mccoy</h6>
-                                <p className="user-subtitle">mccoy@example.com</p>
+                                <h6 className="mt-2 user-title">{`${user.firstName} ${user.lastName}`}</h6>
+                                <p className="user-subtitle">{user.email}</p>
                             </div>
                         </div>
                     </Link>
