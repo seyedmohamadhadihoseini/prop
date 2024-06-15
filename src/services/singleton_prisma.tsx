@@ -1,14 +1,16 @@
-import { PrismaClient } from "@prisma/client";
-import { cache } from "react";
-import "server-only";
+import { PrismaClient } from '@prisma/client'
 
-class PrismaSingleTon{
-    static prisma:PrismaClient;
-    
+const prismaClientSingleton = () => {
+    return new PrismaClient();
 }
-let prisma = PrismaSingleTon.prisma;
-if(!prisma){
-    PrismaSingleTon.prisma = new PrismaClient();
-    prisma = PrismaSingleTon.prisma;
-}
-export default prisma;
+
+declare const globalThis: {
+    prismaGlobal: ReturnType<typeof prismaClientSingleton>;
+} & typeof global;
+
+const prisma = globalThis.prismaGlobal ?? prismaClientSingleton()
+
+export default prisma
+
+globalThis.prismaGlobal = prisma;
+

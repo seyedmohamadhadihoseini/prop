@@ -1,4 +1,4 @@
-import { SendGmail } from "@/services/email";
+import  SendMail  from "@/services/email";
 import prisma from "@/services/singleton_prisma";
 import { randomUUID } from "crypto";
 import { cookies } from "next/headers";
@@ -15,7 +15,7 @@ export default async function SetConfirm(email: string, password: string) {
     const code = generateCode();
     const sessionId = GenerateSession();
     const pr1 = StoreToDb(sessionId, code.toString(), email, password);
-    const pr2 = SendGmail(email, "confirm code", `
+    const pr2 = SendMail(email, "confirm code", `
         <div>
             <p>
                 your confirm code is <strong><b>${code}</b></strong>

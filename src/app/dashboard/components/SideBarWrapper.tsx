@@ -7,6 +7,7 @@ import AcUnitIcon from '@mui/icons-material/AcUnit';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import ForumIcon from '@mui/icons-material/Forum';
 import { usePathname } from "next/navigation";
+import GavelIcon from '@mui/icons-material/Gavel';
 export default function SideBarWrapper() {
     const pathname = usePathname();
 
@@ -24,6 +25,7 @@ export default function SideBarWrapper() {
         { href: "/dashboard/my_challenge", title: "My Challenges", ico: <AcUnitIcon /> },
         { href: "/dashboard/verify", title: "Verify", ico: <FingerprintIcon /> },
         { href: "/dashboard/ticket", title: "Ticket", ico: <ForumIcon /> },
+        { href: "/dashboard/rules", title: "Rules", ico: <GavelIcon /> },
 
     ].map(item => {
         return <MyMenuItem key={item.href} href={item.href} ico={item.ico} title={item.title} isActive={item.href===pathname} />;

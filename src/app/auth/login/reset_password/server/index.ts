@@ -1,9 +1,9 @@
 "use server";
 
 import FormResultState from "@/lib/types/FormResultState";
-import { SendGmail } from "@/services/email";
+import SendMail from "@/services/email";
 import prisma from "@/services/singleton_prisma";
-import {Cryptr_Encrypt} from "@/services/cryptr";
+import { Cryptr_Encrypt } from "@/services/cryptr";
 export default async function SendResetPassword(prevState: FormResultState, formData: FormData) {
 
     const email = formData.get("email")?.toString();
@@ -11,7 +11,7 @@ export default async function SendResetPassword(prevState: FormResultState, form
         const isUserExist = await CheckUser(email);
         if (isUserExist) {
             const encEmail = Cryptr_Encrypt(email);
-            SendGmail(email, "Reset Password", `
+            SendMail(email, "Reset Password", `
             <div>
             <p>
             hi,we receive an request to reset your password

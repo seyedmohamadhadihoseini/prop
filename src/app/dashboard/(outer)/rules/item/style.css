@@ -1,0 +1,25 @@
+.rule-item-div {
+    background-color: #272323;
+
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.rule-item-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.rule-item-header div {
+    text-align: right;
+}
+
+.rule-item-header h3 {
+    text-align: left;
+    font-size: large;
+}
+.content-item{
+    color: antiquewhite;
+    font-size: small;
+}

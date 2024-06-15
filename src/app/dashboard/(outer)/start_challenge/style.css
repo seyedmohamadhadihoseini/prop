@@ -1,0 +1,30 @@
+
+.input-new-challenge{
+    display: flex;
+    flex-wrap: wrap;
+}
+.part-element{
+    margin-top: 50px;
+    margin-right: 30px;
+}
+.part-element h3{
+    text-align: center;
+}
+.accept-rule-check input{
+    width: 30px;
+    height: 20px;
+}
+.payment-part{
+    margin-left: 20px;
+    display: grid;
+    grid-template-columns: 2fr 7fr;
+    display: none;
+}
+.payment-part h3{
+    margin: auto;
+    width: fit-content;
+}
+.now-payment-logo img{
+
+    border-radius: 10px;
+}

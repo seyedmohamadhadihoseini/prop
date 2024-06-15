@@ -56,7 +56,7 @@ export default function ConfirmCode() {
               type='number'
               fullWidth
               id="confirm code"
-              label="Confirm Code"
+              placeholder="Confirm Code"
               name="confirm"
             //   autoComplete="email"
               autoFocus

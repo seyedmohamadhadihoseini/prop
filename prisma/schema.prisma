@@ -70,7 +70,7 @@ model Ticket {
 
 model TicketMessage {
   id         Int       @id @default(autoincrement())
-  text       String @db.LongText
+  text       String    @db.LongText
   date       DateTime?
   isFromUser Boolean   @default(true)
   ticketId   Int
@@ -84,3 +84,4 @@ enum TicketLevel {
   Answered
   Closed
 }
+

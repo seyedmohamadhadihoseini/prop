@@ -1,0 +1,26 @@
+.button-group {
+    background-color: #251d1d;
+    width: fit-content;
+    border-radius: 10px;
+}
+
+.button-group .active {
+    background-color: orange;
+}
+
+.button-group button {
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+.table-level{
+    background-color: #251d1d;
+    border-radius: 10px;
+}
+.table-level th{
+    text-align: center;
+}
+.table-level td{
+    font-size: medium;
+    text-align: center;
+}   
