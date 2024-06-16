@@ -29,13 +29,13 @@ function UserProfile({ user }: { user: User }) {
     return <ul className="navbar-nav align-items-center right-nav-link">
         <li className="nav-item">
             <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-                <span className="user-profile"><img src={`${process.env.PUBLIC_NEXT_HOST}/api/file/get_profile?name=${user.profile}`} className="img-circle" alt="user avatar" /></span>
+                <span className="user-profile"><img src={`${process.env.NEXT_PUBLIC_HOST}/api/file/get_profile?name=${user.profile}`} className="img-circle" alt="user avatar" /></span>
             </Link>
             <ul className="dropdown-menu dropdown-menu-right">
                 <li className="dropdown-item user-details">
                     <Link href="#">
                         <div className="media">
-                            <div className="avatar"><img className="align-self-start mr-3" src={`${process.env.PUBLIC_NEXT_HOST}/api/file/get_profile?name=${user.profile}`} alt="user avatar" /></div>
+                            <div className="avatar"><img className="align-self-start mr-3" src={`${process.env.NEXT_PUBLIC_HOST}/api/file/get_profile?name=${user.profile}`} alt="user avatar" /></div>
                             <div className="media-body">
                                 <h6 className="mt-2 user-title">{`${user.firstName} ${user.lastName}`}</h6>
                                 <p className="user-subtitle">{user.email}</p>

@@ -1,0 +1,51 @@
+.ticket-item{
+
+    background-color: #29232334;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.ticket-item .info{
+    text-align: left;
+    font-size: medium;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+.ticket-item {
+    font-size: small;
+}
+.ticket-item h3{
+    height: min-content;
+}
+.account-number{
+    font-size: small;
+}
+.Pending{
+    background-color: #29232334;
+}
+.Answered{
+    background-color: green;
+}
+.Closed{
+    background-color: red;
+}
+.user-detail{
+    background-color: aqua ;
+    width: fit-content;
+    padding: 8px;
+    border-radius: 8px;
+}
+.select-status select{
+    padding: 8px;
+    color: black;
+    width: 50%;
+    font-size: medium;
+}
+.select-status select option{
+    padding: 8px;
+    background-color: antiquewhite;
+}

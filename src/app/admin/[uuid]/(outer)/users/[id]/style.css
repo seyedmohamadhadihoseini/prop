@@ -1,0 +1,36 @@
+
+.user-header{
+    display: flex;
+    flex-wrap:wrap;
+}
+.user-header img{
+    border-radius: 50%;
+}
+.user-header .user-header-h1{
+    display: table;
+    margin-left: 10px;
+}
+.user-header h1{
+
+    display: table-cell;
+    vertical-align: middle;
+    margin: auto;
+}
+.information-element{
+    display: flex;
+}
+.information-element span{
+    font-weight: bolder;
+    font-size: large;
+}
+.information-element p{
+    font-size: medium;
+    color:orange
+}
+#id-card-user *{
+    padding: 10px;
+}
+#id-card-user a{
+    background-color: orange;
+    border-radius: 8px;
+}

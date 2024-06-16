@@ -1,0 +1,29 @@
+.ticket-message-chat {
+    display: block;
+    margin-top: 10px;
+}
+
+.ticket-message-chat span {
+    color: black;
+    padding: 10px;
+    display: inline-block;
+    border-radius: 8px;
+}
+
+
+.mine {
+    text-align: left;
+}
+
+.admin {
+    text-align: right;
+}
+
+.mine span {
+    background-color: blue;
+}
+
+.admin span {
+    background-color: deeppink;
+
+}

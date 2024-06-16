@@ -1,0 +1,13 @@
+.pagination{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.pagination svg{
+    width: 5%;
+    height: 50px;
+    cursor: pointer;
+    
+}
+.pagination .next-page{
+    text-align: right;
+}

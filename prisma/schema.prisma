@@ -32,7 +32,7 @@ model User {
 }
 
 model Admin {
-  hash String @id
+  uuid String @id
   name String
 }
 
@@ -61,6 +61,10 @@ model SessionSave {
   userId Int
 }
 
+model TicketCategory {
+  name   String   @id
+  Ticket Ticket[]
+}
 model Ticket {
   id            Int             @id @default(autoincrement())
   accountNumber Int
@@ -71,6 +75,8 @@ model Ticket {
   level         TicketLevel     @default(Pending)
   attachedFile  String?
   TicketMessage TicketMessage[]
+  categoryName    String
+  category      TicketCategory  @relation(references: [name], fields: [categoryName])
 }
 
 model TicketMessage {
@@ -89,3 +95,4 @@ enum TicketLevel {
   Answered
   Closed
 }
+

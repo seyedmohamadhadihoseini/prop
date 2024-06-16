@@ -1,0 +1,35 @@
+.main-container{
+
+}
+.select-categories{
+    display: flex;
+    margin-bottom: 10px;
+}
+.select-categories button{
+    padding: 10px;
+    background-color: red;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+.select-categories select{
+    color: black;
+    padding: 10px;
+}
+.set-category-container{
+
+}
+.set-category-form{
+    display: flex;
+
+}
+.set-category-form input{
+    color: black;
+    padding: 10px;
+    margin-right: 10px;
+}
+.set-category-form button{
+    padding: 10px;
+    background-color: green;
+    border-radius: 10px;
+    
+}

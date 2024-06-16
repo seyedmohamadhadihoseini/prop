@@ -3,12 +3,17 @@ import "./style.css";
 import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link';
 import { useFormState } from "react-dom";
-import SendNewTicket from "./server";
-import { useEffect } from "react";
+import SendNewTicket, { GetAllTicketCategoris } from "./server";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { TicketCategory } from "@prisma/client";
 export default function NewTicketApp() {
-
+    const [categories, setCategories] = useState<TicketCategory[]>([]);
+    useLayoutEffect(() => {
+        GetAllTicketCategoris().then(setCategories);
+    }, [])
+    const displayCategories = categories.map(category => <option value={category.name}>{category.name}</option>)
     const [state, formAction] = useFormState(SendNewTicket, { id: 0, success: false, message: "" });
     const router = useRouter();
     useEffect(() => {
@@ -39,6 +44,12 @@ export default function NewTicketApp() {
             </div>
 
             <div className='item-form'>
+                <label htmlFor="">category:</label>
+                <select name="category">
+                    {displayCategories}
+                </select>
+            </div>
+            <div className='item-form'>
                 <label htmlFor="">Title:</label>
                 <input type="text" name="title" id="" required style={{ padding: 7 }} />
             </div>
@@ -48,7 +59,7 @@ export default function NewTicketApp() {
             </div>
             <div className='item-form' >
                 <label htmlFor="ticket-attach-file">attached file</label>
-                <input type='file' name='attached-file'  id='ticket-attach-file' />
+                <input type='file' name='attached-file' id='ticket-attach-file' />
             </div>
             <div style={{ padding: 10 }}>
 

@@ -1,0 +1,21 @@
+.user-list-item {
+    cursor: pointer;
+    
+}
+
+.user-list-item:hover {
+    background-color: orange;
+}
+.user-list-item td {
+    vertical-align: middle;
+}
+
+.user-list-item img {
+
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    width: auto;
+}

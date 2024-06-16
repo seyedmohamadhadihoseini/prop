@@ -15,11 +15,12 @@ export default async function SendNewTicket(prevState: FormResultState, formData
     const accountNumber = parseInt(formData.get("account-number") as string);
     const title = formData.get("title") as string;
     const content = formData.get("content") as string;
+    const category = formData.get("category") as string;
 
     const attachedFile = formData.get("attached-file") as File;
     const fileName = await SaveFileToPublicDir(attachedFile, "ticket_file");
 
-    await StoreNewTicketToDb(accountNumber, content, title, fileName);
+    await StoreNewTicketToDb(accountNumber, content, title, fileName, category);
     result = true;
 
 
@@ -29,11 +30,11 @@ export default async function SendNewTicket(prevState: FormResultState, formData
         message: result ? "successfully send" : "error exists"
     }
 }
-async function StoreNewTicketToDb(accountNumber: number, content: string, title: string, attachedFile: string | null) {
+async function StoreNewTicketToDb(accountNumber: number, content: string, title: string, attachedFile: string | null, category: string) {
     const user: User = await CurrentUser();
     const ticket = await prisma.ticket.create({
         data: {
-            accountNumber, content, title, attachedFile, userId: user.id
+            accountNumber, content, title, attachedFile, userId: user.id, categoryName: category
         }
     });
     await prisma.ticketMessage.create({
@@ -41,4 +42,7 @@ async function StoreNewTicketToDb(accountNumber: number, content: string, title:
             text: content, date: new Date().toISOString(), isFromUser: true, ticketId: ticket.id, userId: user.id
         }
     })
+}
+export async function GetAllTicketCategoris() {
+    return await prisma.ticketCategory.findMany();
 }

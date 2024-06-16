@@ -5,7 +5,8 @@ export default async function middleware(request: NextRequest){
 
     const {pathname} = request.nextUrl;
     const isForApi = pathname.startsWith("/api");
-    if(isForApi){
+    const isForAdmin = pathname.startsWith("/admin");
+    if(isForApi || isForAdmin){
         return;
     } 
     const isToAuth:boolean = pathname.startsWith("/auth");
@@ -14,6 +15,7 @@ export default async function middleware(request: NextRequest){
 
     const user = await CurrentUser();
     let isUserExist = false;
+    
     if(user){
         
         isUserExist = true;

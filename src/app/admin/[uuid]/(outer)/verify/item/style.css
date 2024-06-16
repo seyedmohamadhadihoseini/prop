@@ -1,0 +1,25 @@
+
+.verify-card{
+    background-color: #282121;
+    border-radius: 10px;
+    text-align: center;
+
+    margin-top: 10px;
+}
+.identity-img img{
+    width: 20%;
+    display: block;
+    margin-left: auto;
+     margin-right: auto;
+}
+.determine-status button {
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+#confirm-verify{
+    background-color: green;
+}
+#reject-verify{
+    background-color: red;
+}

@@ -1,0 +1,10 @@
+
+.ticket-chat-title{
+    background-color: rgba(159, 138, 193, 0.4);
+    color:black;
+    width: 100%;
+    padding: 10px;
+    position: absolute;
+    top:10;
+    border-radius: 5px;
+}

@@ -16,7 +16,7 @@ export default async function SendResetPassword(prevState: FormResultState, form
             <p>
             hi,we receive an request to reset your password
             </p>
-            <p>use <a href="${process.env.PUBLIC_NEXT_HOST}/auth/login/reset_password/${encEmail}">this</a> link to do it . </p>
+            <p>use <a href="${process.env.NEXT_PUBLIC_HOST}/auth/login/reset_password/${encEmail}">this</a> link to do it . </p>
             
             </div>
             `)

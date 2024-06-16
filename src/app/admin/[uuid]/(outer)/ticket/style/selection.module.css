@@ -1,0 +1,14 @@
+.main-container {
+    display: flex;
+}
+.main-container div{
+    margin-left: 20px;
+}
+.main-container select{
+    color:black;
+    padding: 10px;
+    background-color: white;
+}
+.main-container select option{
+    background-color: white;
+}
