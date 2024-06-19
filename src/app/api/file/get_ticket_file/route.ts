@@ -13,6 +13,7 @@ export async function GET(request: NextRequest) {
     catch {
     }
     const response = new NextResponse(imageBuffer);
-    // response.headers.set("content-type", "image/jpg");
+    
+    response.headers.set("Content-Disposition", `attachment; filename=${fileName}`);
     return response;
 }

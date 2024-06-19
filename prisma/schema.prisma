@@ -57,7 +57,7 @@ model confirmCode {
 
 model SessionSave {
   id     String @unique
-  user   User   @relation(references: [id], fields: [userId])
+  user   User   @relation(references: [id], fields: [userId],onDelete: Cascade)
   userId Int
 }
 
@@ -71,12 +71,12 @@ model Ticket {
   title         String
   content       String
   userId        Int
-  user          User            @relation(references: [id], fields: [userId])
+  user          User            @relation(references: [id], fields: [userId],onDelete: Cascade)
   level         TicketLevel     @default(Pending)
   attachedFile  String?
   TicketMessage TicketMessage[]
   categoryName    String
-  category      TicketCategory  @relation(references: [name], fields: [categoryName])
+  category      TicketCategory  @relation(references: [name], fields: [categoryName],onDelete: Cascade)
 }
 
 model TicketMessage {
@@ -85,9 +85,9 @@ model TicketMessage {
   date       DateTime?
   isFromUser Boolean   @default(true)
   ticketId   Int
-  ticket     Ticket    @relation(references: [id], fields: [ticketId])
+  ticket     Ticket    @relation(references: [id], fields: [ticketId],onDelete: Cascade)
   userId     Int
-  user       User      @relation(references: [id], fields: [userId])
+  user       User      @relation(references: [id], fields: [userId],onDelete: Cascade)
 }
 
 enum TicketLevel {
@@ -96,3 +96,9 @@ enum TicketLevel {
   Closed
 }
 
+model MailConfiguration{
+  host String @unique
+  port Int
+  user  String
+  pass String
+}

@@ -19,7 +19,7 @@ export default async function SendNewTicket(prevState: FormResultState, formData
 
     const attachedFile = formData.get("attached-file") as File;
     const fileName = await SaveFileToPublicDir(attachedFile, "ticket_file");
-
+    
     await StoreNewTicketToDb(accountNumber, content, title, fileName, category);
     result = true;
 
