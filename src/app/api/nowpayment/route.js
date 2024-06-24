@@ -1,16 +1,41 @@
-import { NextRequest } from "next/server";
-export async function POST(request: NextRequest) {
+// import { NextRequest } from "next/server";
+export async function POST(request) {
     const i_ipn = request.nextUrl.searchParams.get("ipn");
-    const r_ipn = process.env.NOW_PAYMENT_IPN;
+    const r_ipn = process.env.NOW_PAYMENT_IPN_CHECK;
     if (i_ipn != r_ipn) {
         return Response.json({});
     }
+    const xHeader = `${request.headers.get("x-nowpayments-sig")}`;
+    const notificationsKey = `${process.env.NOW_PAYMENT_IPN}`;
     const body = await request.text();
     const response = JSON.parse(body);
+    const hmac = crypto.createHmac('sha512', notificationsKey);
+    hmac.update(JSON.stringify(sortObject(response)));
+    const signature = hmac.digest('hex');
+    console.log(`the header is ${notificationsKey}  `)
+    console.log(`and mine is ${signature}`)
+    if (signature == xHeader) {
+        console.log("okkkkkkk");
+    }
+    else{
+        console.log("nooooooo");
+    }
     const order_id = response?.order_id;
     const status = response?.payment_status;
+    if (status == "finished") {
+
+    }
     console.log(`orderid:${order_id} and status=${status}`);
     return Response.json({});
+}
+function sortObject(obj) {
+    return Object.keys(obj).sort().reduce(
+        (result, key) => {
+            result[key] = (obj[key] && typeof obj[key] === 'object') ? sortObject(obj[key]) : obj[key]
+            return result
+        },
+        {}
+    )
 }
 const rt = {
     "actually_paid": 0,
