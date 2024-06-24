@@ -11,6 +11,7 @@ export async function POST(request: NextRequest) {
     if (signature === header) {
         console.log("the sign is true");
     }
+    return Response.json({});
 }
 
 function sortObject(obj: any) {
