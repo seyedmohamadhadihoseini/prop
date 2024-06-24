@@ -1,27 +1,11 @@
 import { NextRequest } from "next/server";
-import * as crypto from "crypto";
 export async function POST(request: NextRequest) {
-    const header = request.headers.get("x-nowpayments-sig");
-    console.log(header);
+    const i_ipn = request.nextUrl.searchParams.get("ipn");
+    const r_ipn = process.env.NOW_PAYMENT_IPN;
+    if (i_ipn != r_ipn) {
+        return Response.json({});
+    }
     const body = await request.text();
     console.log(body);
-    const hmac = crypto.createHmac('sha512', "zYNSPl4vuieLRShQLl0ECLHD/PJ6wYfU");
-    const sorted = sortObject(body);
-    console.log(sorted);
-    hmac.update(JSON.stringify(sorted));
-    const signature = hmac.digest('hex');
-    if (signature == header) {
-        console.log("the sign is true");
-    }
     return Response.json({});
-}
-
-function sortObject(obj: any) {
-    return Object.keys(obj).sort().reduce(
-        (result: any, key) => {
-            result[key] = (obj[key] && typeof obj[key] === 'object') ? sortObject(obj[key]) : obj[key]
-            return result
-        },
-        {}
-    )
 }
