@@ -16,6 +16,7 @@
     "@mui/icons-material": "^5.15.19",
     "@mui/material": "^5.15.19",
     "@mui/x-date-pickers": "^7.6.2",
+    "@nowpaymentsio/nowpayments-api-js": "^1.0.5",
     "@prisma/client": "^5.15.0",
     "@types/bcrypt": "^5.0.2",
     "bcrypt": "^5.1.1",

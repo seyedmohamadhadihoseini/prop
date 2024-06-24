@@ -42,18 +42,18 @@ export default function SignUp({ actionHandler }: { actionHandler: any }) {
     const [state, formAction] = useFormState(actionHandler, { id: 0, success: true, message: "" });
     const router = useRouter();
     useEffect(() => {
-        if(state.message.length>0){
+        if (state.message.length > 0) {
 
             if (!state.success) {
                 toast.warn(state.message, {
                     position: "top-left"
                 });
             }
-            else{
-                toast.success(state.success,{position:"top-right"});
+            else {
+                // toast.success(state.success, { position: "top-right" });
                 router.push("/");
             }
-            }
+        }
     }, [state.id])
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -105,18 +105,8 @@ export default function SignUp({ actionHandler }: { actionHandler: any }) {
                                     name="email"
                                     autoComplete="email"
                                 />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="new-password"
-                                />
-                            </Grid> */}
+                            </Grid>*/}
+                            
 
                             <Grid item xs={12}>
                                 <TextField
@@ -146,6 +136,16 @@ export default function SignUp({ actionHandler }: { actionHandler: any }) {
                                     onChange={value => {
                                         setPhoneCountry(value);
                                     }}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+
+                                    fullWidth
+                                    name="referral"
+                                    placeholder="referral code"
+                                    type="number"
+                                    id="parent-referral"
                                 />
                             </Grid>
                         </Grid>

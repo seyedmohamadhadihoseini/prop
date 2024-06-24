@@ -14,21 +14,23 @@ datasource db {
 }
 
 model User {
-  id            Int             @id @default(autoincrement())
-  type          UserType        @default(Customer)
-  email         String          @unique
-  firstName     String
-  lastName      String
-  password      String
-  profile       String?
-  address       String?
-  telephone     String?
-  identity      String?
-  brithDate     DateTime?
-  verifyLevel   VerifySteps?    @default(nothing)
-  sessions      SessionSave[]
-  Ticket        Ticket[]
-  TicketMessage TicketMessage[]
+  id                 Int             @id @default(autoincrement())
+  type               UserType        @default(Customer)
+  email              String          @unique
+  firstName          String
+  lastName           String
+  password           String
+  referralCode       Int             @unique @default(10000000)
+  parentReferralCode Int?
+  profile            String?
+  address            String?
+  telephone          String?
+  identity           String?
+  brithDate          DateTime?
+  verifyLevel        VerifySteps?    @default(nothing)
+  sessions           SessionSave[]
+  Ticket             Ticket[]
+  TicketMessage      TicketMessage[]
 }
 
 model Admin {
@@ -57,7 +59,7 @@ model confirmCode {
 
 model SessionSave {
   id     String @unique
-  user   User   @relation(references: [id], fields: [userId],onDelete: Cascade)
+  user   User   @relation(references: [id], fields: [userId], onDelete: Cascade)
   userId Int
 }
 
@@ -65,18 +67,19 @@ model TicketCategory {
   name   String   @id
   Ticket Ticket[]
 }
+
 model Ticket {
   id            Int             @id @default(autoincrement())
   accountNumber Int
   title         String
   content       String
   userId        Int
-  user          User            @relation(references: [id], fields: [userId],onDelete: Cascade)
+  user          User            @relation(references: [id], fields: [userId], onDelete: Cascade)
   level         TicketLevel     @default(Pending)
   attachedFile  String?
   TicketMessage TicketMessage[]
-  categoryName    String
-  category      TicketCategory  @relation(references: [name], fields: [categoryName],onDelete: Cascade)
+  categoryName  String
+  category      TicketCategory  @relation(references: [name], fields: [categoryName], onDelete: Cascade)
 }
 
 model TicketMessage {
@@ -85,9 +88,9 @@ model TicketMessage {
   date       DateTime?
   isFromUser Boolean   @default(true)
   ticketId   Int
-  ticket     Ticket    @relation(references: [id], fields: [ticketId],onDelete: Cascade)
+  ticket     Ticket    @relation(references: [id], fields: [ticketId], onDelete: Cascade)
   userId     Int
-  user       User      @relation(references: [id], fields: [userId],onDelete: Cascade)
+  user       User      @relation(references: [id], fields: [userId], onDelete: Cascade)
 }
 
 enum TicketLevel {
@@ -96,9 +99,24 @@ enum TicketLevel {
   Closed
 }
 
-model MailConfiguration{
+model MailConfiguration {
   host String @unique
   port Int
-  user  String
+  user String
   pass String
+}
+
+model ChallengeSetting {
+  id        Int         @id @default(autoincrement())
+  balance   Int
+  server    String
+  platform  String
+  leverage  String
+  challenge Challenge[]
+}
+
+model Challenge {
+  id        Int              @id @default(autoincrement())
+  settingId Int
+  setting   ChallengeSetting @relation(references: [id], fields: [settingId])
 }
