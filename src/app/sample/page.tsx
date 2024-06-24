@@ -13,7 +13,7 @@ export default function SampleApp() {
         async function fetchCurrencies() {
             const st:InvoiceReturn= await npApi.createInvoice({ pay_currency: "tusd", order_description: "pay for me", price_amount: 10, price_currency: "usd", order_id: "12355", cancel_url: "www.google.com", success_url: "www.google.com", ipn_callback_url: "https://my.algorixfinance.com/api/nowpayment?ipn=51ff4f21-5f09-44b3-9fef-0e087e98280b" }) as InvoiceReturn; 
             console.log(st);
-            router.push(st);
+            router.push(st.invoice_url);
         }
         fetchCurrencies()
     }, [])
