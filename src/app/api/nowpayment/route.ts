@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
     const hmac = crypto.createHmac('sha512', "zYNSPl4vuieLRShQLl0ECLHD/PJ6wYfU");
     hmac.update(JSON.stringify(sortObject(body)));
     const signature = hmac.digest('hex');
-    if (signature === header) {
+    if (signature == header) {
         console.log("the sign is true");
     }
     return Response.json({});
