@@ -1,4 +1,5 @@
 // import { NextRequest } from "next/server";
+import prisma from "@/services/singleton_prisma";
 import * as crypto from "crypto";
 export async function POST(request) {
     const i_ipn = request.nextUrl.searchParams.get("ipn");
@@ -13,18 +14,20 @@ export async function POST(request) {
     const hmac = crypto.createHmac('sha512', notificationsKey);
     hmac.update(JSON.stringify(sortObject(response)));
     const signature = hmac.digest('hex');
-    console.log(`the header is ${notificationsKey}  `)
-    console.log(`and mine is ${signature}`)
-    if (signature == xHeader) {
-        console.log("okkkkkkk");
-    }
-    else{
-        console.log("nooooooo");
+    if (signature != xHeader) {
+        return response.json({});
     }
     const order_id = response?.order_id;
     const status = response?.payment_status;
     if (status == "finished") {
-
+        await prisma.challenge.update({
+            where: {
+                id: parseInt(`${order_id}`)
+            },
+            data: {
+                isPaied: true
+            }
+        })
     }
     console.log(`orderid:${order_id} and status=${status}`);
     return Response.json({});

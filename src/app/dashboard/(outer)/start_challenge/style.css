@@ -6,6 +6,8 @@
 .part-element{
     margin-top: 50px;
     margin-right: 30px;
+    text-align: center;
+    margin: 0 auto ;
 }
 .part-element h3{
     text-align: center;

@@ -12,7 +12,7 @@ export default async function CurrentUser() {
         }
         const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/auth/current_user?sessionId=${sessionId}`, { cache: "default" });
         const user = JSON.parse(await response.text());
-        if (sessionId) {
+        if (sessionId && user.success) {
             sessionPair[sessionId] = user;
         }
         if (user.success) {

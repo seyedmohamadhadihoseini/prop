@@ -25,7 +25,6 @@ export default async function middleware(request: NextRequest) {
         isUserExist = true;
     }
 
-
     if ((isToAuth || isToHome) && isUserExist) {
         return NextResponse.redirect(new URL("/dashboard", request.url));
     }

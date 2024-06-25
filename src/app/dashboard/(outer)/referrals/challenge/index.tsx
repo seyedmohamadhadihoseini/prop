@@ -4,14 +4,14 @@ import { User } from "@prisma/client";
 
 export default async function RefferalChallengeTable() {
     const user: User = await CurrentUser();
-    const challenges = await prisma.user.findMany({
-        where: {
-            parentReferralCode: user.referralCode
-        }, include: {
-            Challenges: true
-        }
-    });
-    
+    // const challenges = await prisma.user.findMany({
+    //     where: {
+    //         parentReferralCode: user.referralCode
+    //     }, include: {
+    //         Challenges: true
+    //     }
+    // });
+
     return <div className="row">
         <div className="col-lg-12">
             <div className="card">

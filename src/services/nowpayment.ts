@@ -9,15 +9,13 @@ async function CreateInvoice() {
         success_url: "https://nowpayments.io",
         cancel_url: "https://nowpayments.io"
     }
-    const apiKey = process.env.NOW_PAYMENT_APIKEY;
+    const apiKey = `${process.env.NOW_PAYMENT_APIKEY}`;
     const response = await fetch("https://api.nowpayments.io/v1/invoice", {
         method: "POST",
         headers: {
-            'x-api-key': apiKey || "",
+            'x-api-key': apiKey,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     });
-    console.log(response);
 }
-CreateInvoice();
