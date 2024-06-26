@@ -10,7 +10,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import GroupIcon from '@mui/icons-material/Group';
 import ForumIcon from '@mui/icons-material/Forum';
 import { AccountBox } from "@mui/icons-material";
-export default function DashboardLayout({ children,params }: { children: React.ReactNode,params:{uuid:string} }) {
+export default function DashboardLayout({ children, params }: { children: React.ReactNode, params: { uuid: string } }) {
     const uuid = params.uuid;
     return <DashboardLayoutComponent
         SideBarData={[
@@ -18,7 +18,7 @@ export default function DashboardLayout({ children,params }: { children: React.R
             { href: `/admin/${uuid}/setting`, title: "settings", ico: <SettingsIcon /> },
             { href: `/admin/${uuid}/verify`, title: "Verify Users", ico: <FingerprintIcon /> },
             { href: `/admin/${uuid}/ticket`, title: "ticket", ico: <ForumIcon /> },
-            { href: `/admin/${uuid}/challenge`, title: "Challenges", ico: <AccountTreeIcon /> },
+            { href: `/admin/${uuid}/challenge`, title: "Challenges Settings", ico: <AccountTreeIcon /> },
             { href: `/admin/${uuid}/report_challenge`, title: "Report Challenge", ico: <AcUnitIcon /> },
             { href: `/admin/${uuid}/payments`, title: "Payments", ico: <PaidIcon /> },
         ]}

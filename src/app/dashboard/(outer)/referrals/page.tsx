@@ -9,7 +9,7 @@ export default async function ReferralsApp() {
         where: {
             parentReferralCode: user.referralCode
         }
-    })
+    });
 
 
 

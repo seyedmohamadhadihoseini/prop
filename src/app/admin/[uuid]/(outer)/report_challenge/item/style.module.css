@@ -1,0 +1,11 @@
+.main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: gray;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 8px;
+}
+.paid{
+    background-color: green;
+}

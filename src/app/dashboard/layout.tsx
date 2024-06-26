@@ -7,6 +7,7 @@ import ForumIcon from '@mui/icons-material/Forum';
 import DashboardLayoutComponent from '@/components/dashboard/layout';
 import GavelIcon from '@mui/icons-material/Gavel';
 import GroupsIcon from '@mui/icons-material/Groups';
+import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
 
 
@@ -18,6 +19,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             { href: "/dashboard/my_challenge", title: "My Challenges", ico: <AcUnitIcon /> },
             { href: "/dashboard/verify", title: "Verify", ico: <FingerprintIcon /> },
             { href: "/dashboard/referrals", title: "Referrals", ico: <GroupsIcon /> },
+            { href: "/dashboard/orders", title: "Orders", ico: <MilitaryTechIcon /> },
             { href: "/dashboard/ticket", title: "Ticket", ico: <ForumIcon /> },
             { href: "/dashboard/rules", title: "Rules", ico: <GavelIcon /> },
 

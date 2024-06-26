@@ -25,7 +25,7 @@ export async function POST(request) {
                 id: parseInt(`${order_id}`)
             },
             data: {
-                isPaied: true
+                isPaid: true
             }
         })
     }

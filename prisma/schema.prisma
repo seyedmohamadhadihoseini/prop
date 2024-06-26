@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch","fullTextIndex"]
 }
 
 datasource db {
@@ -123,5 +124,6 @@ model Challenge {
   setting   ChallengeSetting @relation(references: [id], fields: [settingId])
   userId    Int
   user      User             @relation(references: [id], fields: [userId])
-  isPaied   Boolean          @default(false)
+  isPaid   Boolean          @default(false)
+  date      DateTime         @default(now())
 }

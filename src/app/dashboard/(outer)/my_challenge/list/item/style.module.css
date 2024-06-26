@@ -1,0 +1,14 @@
+
+.main{
+    display: block;
+    background-color: #352828;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 2px;
+}
+.main h3{
+    font-size: large;
+}
+.main p{
+    font-size: small;
+}

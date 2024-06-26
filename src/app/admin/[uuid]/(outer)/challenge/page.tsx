@@ -1,8 +1,9 @@
+import ChallengeSettingList from "./list";
 
 
 export default function ChallengeAdminApp() {
 
     return <div>
-        Challenge Admin App÷
+        <ChallengeSettingList />
     </div>
 }

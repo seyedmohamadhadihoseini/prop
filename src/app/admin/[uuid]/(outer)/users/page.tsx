@@ -18,7 +18,6 @@ export default function UserList() {
 
     return <div>
 
-
         <div className="row mt-3">
             <div className="col-lg-12">
                 <div className="card">

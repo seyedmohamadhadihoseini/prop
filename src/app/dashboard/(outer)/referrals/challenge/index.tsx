@@ -1,51 +1,58 @@
 import CurrentUser from "@/functions/CurrentUser"
 import prisma from "@/services/singleton_prisma"
 import { User } from "@prisma/client";
+import RefferalChallengeTableItem from "./item";
 
 export default async function RefferalChallengeTable() {
     const user: User = await CurrentUser();
-    // const challenges = await prisma.user.findMany({
-    //     where: {
-    //         parentReferralCode: user.referralCode
-    //     }, include: {
-    //         Challenges: true
-    //     }
-    // });
-
+    const users = await prisma.user.findMany({
+        where: {
+            parentReferralCode: user.referralCode
+        }, include: {
+            Challenge: {
+                where: {
+                    isPaid: true
+                }, include: {
+                    setting: true
+                }
+            }
+        }
+    });
+    let AllCount = 0; let AllPrice = 0;
+    const displayUsers = users.map((user, index) => {
+        const count = user.Challenge.length;
+        const price = user.Challenge.reduce(
+            (accumulator, currentValue) => accumulator + currentValue.setting.price,
+            0,
+        )
+        AllPrice += price;
+        AllCount += count;
+        return <RefferalChallengeTableItem
+            number={index + 1} count={count}
+            name={user.email} price={price}
+            key={user.id}
+        />
+    })
     return <div className="row">
         <div className="col-lg-12">
             <div className="card">
                 <div className="card-body">
-                    <h5 className="card-title">referral's Challenges</h5>
+                    <h5 className="card-title">
+                        referral's Challenges
+                    </h5>
+                    <p style={{textAlign:"center"}}>total price:{AllPrice}$</p>
                     <div className="table-responsive">
-                        <table className="table table-hover">
+                        <table className="table table-hover" style={{ textAlign: "center" }}>
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
+                                    <th scope="col"></th>
+                                    <th scope="col">user</th>
+                                    <th scope="col">total count</th>
+                                    <th scope="col">total price</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td >Larry the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>@twitter</td>
-                                </tr>
+                                {displayUsers}
                             </tbody>
                         </table>
                     </div>
