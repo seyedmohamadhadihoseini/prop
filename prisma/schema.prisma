@@ -5,8 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-  previewFeatures = ["fullTextSearch","fullTextIndex"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -109,21 +109,36 @@ model MailConfiguration {
 }
 
 model ChallengeSetting {
-  id          Int         @id @default(autoincrement())
+  id          Int          @id @default(autoincrement())
   name        String
   balance     Int
   price       Int
   description String
-  isEnable    Boolean     @default(true)
+  isEnable    Boolean      @default(true)
   challenge   Challenge[]
+  MT5Account  MT5Account[]
 }
 
 model Challenge {
-  id        Int              @id @default(autoincrement())
+  id         Int              @id @default(autoincrement())
+  settingId  Int
+  setting    ChallengeSetting @relation(references: [id], fields: [settingId])
+  userId     Int
+  user       User             @relation(references: [id], fields: [userId])
+  isPaid     Boolean          @default(false)
+  date       DateTime         @default(now())
+  MT5        Int?             @unique
+  mt5Account MT5Account?      @relation(references: [accountNumber], fields: [MT5])
+}
+
+model MT5Account {
+  accountNumber Int        @id
+  password      String
+  balance       Decimal?
+  isEnable      Boolean    @default(true)
+  isFree        Boolean    @default(true)
+  challengeId   Int?
+  Challenge     Challenge?
   settingId Int
   setting   ChallengeSetting @relation(references: [id], fields: [settingId])
-  userId    Int
-  user      User             @relation(references: [id], fields: [userId])
-  isPaid   Boolean          @default(false)
-  date      DateTime         @default(now())
 }

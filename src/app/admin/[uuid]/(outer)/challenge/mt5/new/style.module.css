@@ -1,0 +1,9 @@
+.ch-setting {
+    width: 100%;
+    border-radius: 8px;
+    padding: 10px;
+}
+.ch-setting option{
+    color: black;
+    background-color: white;
+}

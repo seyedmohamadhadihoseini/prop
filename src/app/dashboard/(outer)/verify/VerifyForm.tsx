@@ -24,9 +24,9 @@ export default function VerifyForm() {
     return <form action={formAction} id="verification-form"    >
 
         <div className="form-element">
-            <label htmlFor="birth-date">birthDate :</label>
+            {/* <label htmlFor="birth-date">birthDate :</label> */}
             <div id="birth-date">
-                <BasicDatePicker />
+                {/* <BasicDatePicker /> */}
             </div>
         </div>
         <div className="form-element">

@@ -20,9 +20,13 @@ export default async function UpdateProfile(prevState: FormResultState, formData
     const password = formData.get("password") as string;
     const confirmPassword = formData.get("confirm-password") as string;
     const profile = formData.get("profile") as File;
+    let brithDate = formData.get("brithdate") as string;
+
+    
+   
     let success = true;
     const checkPass = CheckForPasswords(password, confirmPassword);
-    let data: any = {
+    let data:any = {
         firstName, lastName, address, telephone
     }
     if (checkPass !== false) {
@@ -33,6 +37,11 @@ export default async function UpdateProfile(prevState: FormResultState, formData
             const newFileName = await SaveFileToPublicDir(profile, "users/img");
             data = { ...data, profile: newFileName }
         }
+        if(brithDate){
+            brithDate = new Date(brithDate).toISOString();
+            data = {...data,brithDate}; 
+        }
+        
     }
     else {
         success = false;
@@ -52,6 +61,7 @@ export default async function UpdateProfile(prevState: FormResultState, formData
     }
     return result;
 }
+
 function CheckForPasswords(pass: string, cPass: string) {
     let result = false;
     if (pass && cPass) {

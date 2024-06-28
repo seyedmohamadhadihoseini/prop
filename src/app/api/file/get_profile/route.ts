@@ -4,13 +4,16 @@ import path from 'path'
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-    const imageName = request.nextUrl.searchParams.get("name");
+    let imageName = request.nextUrl.searchParams.get("name");
+    if (imageName == "null") {
+        imageName = "avatar.png";
+    }
     const filePath = path.resolve('.', `public/users/img/${imageName}`);
-    let  imageBuffer;
-    try{
+    let imageBuffer;
+    try {
         imageBuffer = readFileSync(filePath);
     }
-    catch{
+    catch {
     }
     const response = new NextResponse(imageBuffer);
     response.headers.set("content-type", "image/jpg");

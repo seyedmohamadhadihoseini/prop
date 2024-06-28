@@ -1,0 +1,12 @@
+.main {}
+
+.main select {
+    color: black;
+    padding: 10px 5px;
+    width: 100%;
+}
+
+.main select option {
+    text-align: left;
+    background-color: whitesmoke;
+}

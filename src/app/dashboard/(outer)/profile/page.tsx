@@ -45,6 +45,9 @@ export default function Profile() {
                             <elements.PR_Mobile defaultVal={user.telephone} />
                         </div>
                         <div className="form-group">
+                            <elements.PR_BirthDate defaultVal={user.brithDate} />
+                        </div>
+                        <div className="form-group">
                             <elements.PR_Address defaultVal={user.address} />
                         </div>
                         <div className="form-group sp-container">

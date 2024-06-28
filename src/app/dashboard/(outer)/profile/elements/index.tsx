@@ -1,20 +1,20 @@
 import { User } from "@prisma/client"
 
 class PR_Elements {
-    PR_Name({defaultVal}:{defaultVal:string}) {
-        
+    PR_Name({ defaultVal }: { defaultVal: string }) {
+
         return <div>
             <label htmlFor="pr_name">Name</label>
             <input type="text" name="first-name" defaultValue={defaultVal} className="form-control" id="pr_name" placeholder="Enter Your Name" />
         </div>
     }
-    PR_LastName({defaultVal}:{defaultVal:string}) {
+    PR_LastName({ defaultVal }: { defaultVal: string }) {
         return <div>
             <label htmlFor="pr_lastname">LastName</label>
             <input type="text" name="last-name" defaultValue={defaultVal} className="form-control" id="pr_lastname" placeholder="Enter Your LastName" />
         </div>
     }
-    PR_Email({defaultVal}:{defaultVal:string}) {
+    PR_Email({ defaultVal }: { defaultVal: string }) {
         return <div>
             <label htmlFor="pr-email">Email</label>
             <input type="email" value={defaultVal} readOnly className="form-control" name="email" id="pr-email" placeholder="Enter Your Email Address" />
@@ -32,7 +32,7 @@ class PR_Elements {
             <input type="password" className="form-control" name="confirm-password" id="pr-confirm-password" placeholder="Confirm Password" />
         </div>
     }
-    PR_Address({defaultVal}:{defaultVal:any}) {
+    PR_Address({ defaultVal }: { defaultVal: any }) {
 
         return <div>
             <label htmlFor="pr_address">Address</label>
@@ -47,17 +47,24 @@ class PR_Elements {
 
         </div>
     }
-    PR_Mobile({defaultVal}:{defaultVal:any}) {
+    PR_Mobile({ defaultVal }: { defaultVal: any }) {
         return <div>
             <label htmlFor="pr_mobile">Mobile</label>
-            <input type="string" defaultValue={defaultVal} className="form-control" name="mobile" id="pr_mobile" placeholder="Enter Your Telephone"/>
+            <input type="string" defaultValue={defaultVal} className="form-control" name="mobile" id="pr_mobile" placeholder="Enter Your Telephone" />
+        </div>
+    }
+    PR_BirthDate({ defaultVal }: { defaultVal: any }) {
+        const date = new Date(defaultVal).toISOString().split("T")[0];
+        console.log(date)
+        return <div>
+            <label htmlFor="pr_birthdate">BirthDate</label>
+            <input type="date" defaultValue={date} className="form-control" name="brithdate" id="pr_birthdate" placeholder="Enter Your BirthDate" />
         </div>
     }
 
 }
 
 
-
-const PrElements =new PR_Elements();
+const PrElements = new PR_Elements();
 
 export default PrElements;

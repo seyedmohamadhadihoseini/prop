@@ -6,6 +6,7 @@ export default function MyChallenge(){
 
     return <div>
         <MyChallengeHeader/>
+        <br />
         <ChallengesList/>
     </div>
 }

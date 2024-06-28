@@ -1,6 +1,7 @@
 // import { NextRequest } from "next/server";
 import prisma from "@/services/singleton_prisma";
 import * as crypto from "crypto";
+import { FindFistMT5Account, GetChallengeById, GetChallengeSettingId } from "./helper";
 export async function POST(request) {
     const i_ipn = request.nextUrl.searchParams.get("ipn");
     const r_ipn = process.env.NOW_PAYMENT_IPN_CHECK;
@@ -20,14 +21,19 @@ export async function POST(request) {
     const order_id = response?.order_id;
     const status = response?.payment_status;
     if (status == "finished") {
+        // const challengeId = parseInt(`${order_id}`);
+        // const challenge = await GetChallengeById(challengeId);
+        // const acc = await FindFistMT5Account(challenge.settingId);
+        
         await prisma.challenge.update({
             where: {
-                id: parseInt(`${order_id}`)
+                id: challengeId
             },
             data: {
                 isPaid: true
             }
-        })
+        });
+
     }
     console.log(`orderid:${order_id} and status=${status}`);
     return Response.json({});

@@ -1,0 +1,29 @@
+.main {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: #363333;
+    padding: 10px;
+    margin-top: 2px;
+    border-radius: 8px;
+}
+
+.finished {
+    background-color: rgb(19, 42, 112);
+}
+
+.main p {
+    width: auto;
+}
+
+.user-detail {
+    background-color: #119e9c;
+    width: min-content;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+@media screen and (max-width: 650px) {
+    .main p {
+        font-size: medium;
+    }
+}

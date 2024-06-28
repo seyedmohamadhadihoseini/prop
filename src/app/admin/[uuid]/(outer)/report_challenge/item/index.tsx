@@ -9,22 +9,30 @@ export default function ReportChallengeItem({ challenge }: { challenge: Challeng
         GetChallengeSetting(challenge.settingId).then(setSetting);
         GetUser(challenge.userId).then(setUser);
     }, []);
-    return <div className={`${style.main} ${challenge.isPaid && style.paid}`}>
-        <p>
-            {setting?.name}
-        </p>
-        <p>
-            {user?.email}
-        </p>
-        <p>
-            {setting?.price}
-        </p>
-        <p>
-            date:{challenge.date.toDateString()}
-        </p>
-        <p>
-            isPaid:{challenge.isPaid ? "paid" : "pending"}
-        </p>
+    return <tr>
+        <th scope="row">{challenge.id}</th>
+        <td>{setting?.name}</td>
+        <td>{setting?.price}</td>
+        <td>{user?.email}</td>
+        <td>{challenge.date.toLocaleDateString()}</td>
+        <td>{challenge.isPaid?"Paid":"Pending"}</td>
+    </tr>
+    // return <div className={`${style.main} ${challenge.isPaid && style.paid}`}>
+    //     <p>
+    //         {setting?.name}
+    //     </p>
+    //     <p>
+    //         {user?.email}
+    //     </p>
+    //     <p>
+    //         {setting?.price}
+    //     </p>
+    //     <p>
+    //         date:{challenge.date.toDateString()}
+    //     </p>
+    //     <p>
+    //         isPaid:{challenge.isPaid ? "paid" : "pending"}
+    //     </p>
 
-    </div>
+    // </div>
 }

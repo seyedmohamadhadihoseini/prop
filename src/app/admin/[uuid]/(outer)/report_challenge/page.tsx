@@ -23,7 +23,32 @@ export default function ReportChallengeApp() {
                     setChallenges(await SearchUser(search));
                 }}
             />
-            {displayChallenges}
+            <div className="row mt-3">
+                <div className="col-lg-12">
+                    <div className="card">
+                        <div className="">
+                            <div className="table-responsive">
+                                <table className="table" style={{textAlign:"center"}}>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">id</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">User</th>
+                                            <th scope="col">date</th>
+                                            <th scope="col">payment Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {displayChallenges}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         
         </div>
         <Pagination setSkip={setSkip} skip={skip} take={take} />
     </div>

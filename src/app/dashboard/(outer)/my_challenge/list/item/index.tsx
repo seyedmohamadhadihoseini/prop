@@ -1,22 +1,27 @@
 import { Challenge } from "@prisma/client";
-import style from "./style.module.css";
+
 import prisma from "@/services/singleton_prisma";
-import Link from "next/link";
+import AssignMT5, { GetMT5Account } from "./server";
+import ItemClient from "./client";
 
 export default async function ChallengeItem({ challenge }: { challenge: Challenge }) {
+    let account;
+    if (!challenge.MT5) {
+        account = await AssignMT5(challenge);
+        if (account) {
+            challenge.MT5 = account.accountNumber;
+        }
+    } else {
+        account = await GetMT5Account(challenge.MT5);
+    }
     const challengeModel = await prisma.challengeSetting.findUnique({
         where: {
-            id: challenge.id
+            id: challenge.settingId
         }
     });
     if (!challengeModel) {
         return;
     }
-    return <div className={style.main}>
-        <Link href={`my_challenge/${challenge.id}`}>
-        <h3>{challengeModel.name}</h3>
-        <p>{challengeModel.balance}</p>
-        <p>{challengeModel.description}</p>
-        </Link>
-    </div>
+    return <ItemClient account={account} challengeId={challenge.id} challengeModelName={challengeModel.name} />
+
 }
