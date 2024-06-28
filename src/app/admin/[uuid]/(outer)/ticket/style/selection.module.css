@@ -12,3 +12,9 @@
 .main-container select option{
     background-color: white;
 }
+.user-email input{
+    color: black;
+    background-color: white ;
+    padding: 8px;
+    border-radius: 8px;
+}

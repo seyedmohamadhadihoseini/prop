@@ -4,9 +4,10 @@ import { useLayoutEffect, useState } from "react";
 import { GetAllTicketCategoris } from "./server";
 
 export default function SelectionTicket
-    ({ category, setCategory, ticketStatus, setTicketStatus }: {
+    ({ category, setCategory, ticketStatus, setTicketStatus, email, setEmail }: {
         category: string, setCategory: (x: string) => void,
-        ticketStatus: string, setTicketStatus: (x: string) => void
+        ticketStatus: string, setTicketStatus: (x: string) => void,
+        email: string, setEmail: (x: string) => void
     }) {
     const [categories, setCategories] = useState<TicketCategory[]>([]);
     useLayoutEffect(() => {
@@ -31,6 +32,10 @@ export default function SelectionTicket
                 <option value={TicketLevel.Pending}>Pending</option>
                 <option value={TicketLevel.Answered}>Answered</option>
             </select>
+        </div>
+        <div className={style["user-email"]}>
+            <label htmlFor="admin-user-email">search by user's email :</label>
+            <input type="text" value={email} name="search-filter" id="admin-user-email" onChange={e => setEmail(e.target.value)} />
         </div>
     </div >
 }
