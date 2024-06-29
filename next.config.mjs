@@ -2,7 +2,7 @@
 const nextConfig = {
     experimental:{
         serverActions:{
-            allowedOrigins:["*"]
+            allowedOrigins:["localhost:3013","https://my.algorixfinance.com"]
         }
     },
     images: {
