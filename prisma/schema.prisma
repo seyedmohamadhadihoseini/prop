@@ -102,10 +102,17 @@ enum TicketLevel {
 }
 
 model MailConfiguration {
-  host String @unique
+  id Int @id @default(autoincrement())
+  host String 
   port Int
   user String
   pass String
+}
+
+model NowPaymentConfig {
+  apiKey    String @unique
+  ipnKey    String
+  publicKey String
 }
 
 model ChallengeSetting {
@@ -132,13 +139,13 @@ model Challenge {
 }
 
 model MT5Account {
-  accountNumber Int        @id
+  accountNumber Int              @id
   password      String
   balance       Decimal?
-  isEnable      Boolean    @default(true)
-  isFree        Boolean    @default(true)
+  isEnable      Boolean          @default(true)
+  isFree        Boolean          @default(true)
   challengeId   Int?
   Challenge     Challenge?
-  settingId Int
-  setting   ChallengeSetting @relation(references: [id], fields: [settingId])
+  settingId     Int
+  setting       ChallengeSetting @relation(references: [id], fields: [settingId])
 }
