@@ -7,6 +7,8 @@ import { useLayoutEffect, useState } from "react";
 import { User } from "@prisma/client";
 import GetUsers from "./server";
 import Pagination from "@/components/pagination";
+import SearchUsersServer from "./search/server";
+import SeachUser from "./search";
 export default function UserList() {
     const [usersList, setUsersList] = useState<User[]>([]);
     const [skip, setSkip] = useState(0);
@@ -15,9 +17,20 @@ export default function UserList() {
         GetUsers(skip, take).then(setUsersList);
     }, [skip])
     const displayUser = usersList.map(user => <UserListItem user={user} key={user.id} />)
+    const changeHandler = async (value: string) => {
+
+        setUsersList(await SearchUsersServer(value));
+
+    }
+    const keyUpHandler = async (value: string) => {
+        if (value.length == 0) {
+
+            setUsersList(await SearchUsersServer(value));
+        }
+    }
 
     return <div>
-
+        <SeachUser changeHandler={changeHandler} keyUp={keyUpHandler} />
         <div className="row mt-3">
             <div className="col-lg-12">
                 <div className="card">
@@ -42,6 +55,6 @@ export default function UserList() {
             </div>
 
         </div>
-        <Pagination skip={skip} setSkip={setSkip} take={take}/>
+        <Pagination skip={skip} setSkip={setSkip} take={take} />
     </div>
 }

@@ -26,13 +26,13 @@ export async function BuyChallenge(challengeModelId: number) {
     }
     const challenge = await prisma.challenge.create({
         data: {
-            settingId: challengeModelId, userId: user.id, isPaid: false
+            settingId: challengeModelId, userId: user.id, isPaid: false, paidPrice: challengeModel.price
         }
     });
     let inv = await npApi.createInvoice(
         {
 
-            order_description: "pay for challenge",
+            order_description: `email:${user.email} pay for challenge:${challengeModel.name}`,
             price_amount: challengeModel.price,
             price_currency: "usd", order_id: `${challenge.id}`,
             cancel_url: `${process.env.NEXT_PUBLIC_HOST}`,

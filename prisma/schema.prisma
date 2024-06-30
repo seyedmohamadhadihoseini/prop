@@ -133,8 +133,10 @@ model Challenge {
   userId     Int
   user       User             @relation(references: [id], fields: [userId])
   isPaid     Boolean          @default(false)
+  paidPrice  Int?
   date       DateTime         @default(now())
-  MT5        String?             @unique
+  isIntervaled Boolean @default(false)
+  MT5        String?          @unique
   mt5Account MT5Account?      @relation(references: [accountNumber], fields: [MT5])
 }
 

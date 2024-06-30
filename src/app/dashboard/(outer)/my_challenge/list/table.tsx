@@ -1,4 +1,4 @@
-"use client";
+
 
 export default function MyChallengeTable({ displayList }: { displayList: React.JSX.Element[] }) {
 
@@ -10,6 +10,7 @@ export default function MyChallengeTable({ displayList }: { displayList: React.J
                         <tr>
                             <th scope="col">id</th>
                             <th scope="col">Name</th>
+                            <th scope="col">Server</th>
                             <th scope="col">Login_Number</th>
                             <th scope="col">password</th>
                         </tr>

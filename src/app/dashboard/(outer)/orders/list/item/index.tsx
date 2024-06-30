@@ -5,6 +5,7 @@ import style from "./style.module.css";
 export default function OrderListItem({ challenge }: { challenge: Challenge }) {
 
     const [setting, setSetting] = useState<ChallengeSetting | null>();
+
     useLayoutEffect(() => {
         GetChallengeSetting(challenge.settingId).then(setSetting);
     }, [challenge])
@@ -16,7 +17,7 @@ export default function OrderListItem({ challenge }: { challenge: Challenge }) {
             status:{challenge.isPaid ? "Finshed" : "Pending"}
         </p>
         <p>
-            price:{setting?.price}
+            price:{challenge.paidPrice ? challenge.paidPrice : setting?.price}
         </p>
         <p>
             date : {challenge.date.toDateString()}

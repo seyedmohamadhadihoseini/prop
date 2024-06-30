@@ -18,7 +18,32 @@ export default function OrdersList({ status }: { status: "All" | "Paid" | "Pendi
                     setOrders(await SearchByUser(search));
                 }}
             />
-        {displayOrders}
+            <div className="row mt-3">
+                <div className="col-lg-12">
+                    <div className="card">
+                        <div className="card-body">
+                            <h5 className="card-title">Basic Table</h5>
+                            <div className="table-responsive">
+                                <table className="table" style={{
+                                    textAlign: "center"
+                                }}>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">order id</th>
+                                            <th scope="col">email</th>
+                                            <th scope="col">status</th>
+                                            <th scope="col">price</th>
+                                            <th scope="col">date</th>
+                                        </tr>
+                                    </thead>
+                                   <tbody>{displayOrders}</tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
     </div>
 
 }

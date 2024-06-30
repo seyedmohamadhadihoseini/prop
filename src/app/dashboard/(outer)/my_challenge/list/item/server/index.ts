@@ -39,7 +39,7 @@ export default async function AssignMT5(challenge: Challenge) {
     return acc;
 
 }
-export async function GetMT5Account(accountNumber: number) {
+export async function GetMT5Account(accountNumber: string) {
 
     return await prisma.mT5Account.findUnique({
         where: {

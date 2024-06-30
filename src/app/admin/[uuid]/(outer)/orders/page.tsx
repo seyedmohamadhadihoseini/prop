@@ -6,7 +6,7 @@ import OrdersList from "./list";
 export default function OrdersApp() {
 
     const [status, setStatus] = useState<any>("All");
-   
+
     return <div className={style.main}>
         <select onChange={e => {
             setStatus(e.target.value);
@@ -16,6 +16,7 @@ export default function OrdersApp() {
             <option value={"Paid"}>Paid</option>
         </select>
         <div className="order-list">
+            
             <OrdersList status={status} />
         </div>
 
