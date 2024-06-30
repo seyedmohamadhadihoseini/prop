@@ -16,7 +16,7 @@ export async function UpdateTodayRecord(username: string) {
         return
     }
     const balance = res.balance;
-    
+
     const y_balance = await dayShiftBalance(username, 1) || balance;
     if (y_balance == balance) {
         return;
@@ -65,7 +65,7 @@ export async function SetNewHistoryRecord(username: string) {
 async function dayShiftBalance(username: string, shift: number) {
 
     let yesterdayDate = new Date();
-    yesterdayDate.setDate(yesterdayDate.getDate() -  shift);
+    yesterdayDate.setDate(yesterdayDate.getDate() - shift);
     const yesterday = yesterdayDate.toISOString().split("T")[0];
     const yesterdayBalance = await prisma.history.findUnique({
         where: {
@@ -78,7 +78,7 @@ async function dayShiftBalance(username: string, shift: number) {
 }
 
 export async function GetFromMT5(username: string) {
-    
+
     // return {
     //     balance: Math.random()>0.5?10000:9000, deals: 5
     // }
@@ -90,16 +90,8 @@ export async function GetFromMT5(username: string) {
     if (!acc) {
         return
     }
-    const mt5Ip = `${process.env.MT5_ADDRESS}`;
-    const response = await fetch(mt5Ip, {
-        next: { revalidate: 3600 },
-        method: "POST",
-        body: JSON.stringify({
-            number: username,
-            server: acc.server,
-            password: acc.password
-        })
-    });
+    const mt5Ip = `${process.env.MT5_ADDRESS}/${acc.server}/${acc.accountNumber}/${acc.password}`;
+    const response = await fetch(mt5Ip);
     if (!response.ok) {
         return false;
     }
