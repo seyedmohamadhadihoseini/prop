@@ -12,7 +12,7 @@ export default function ItemClient(
     }}>
         <th scope="row">{challengeId}</th>
         <td>{challengeModelName}</td>
-        <td>{account ? account.accountNumber : "waiting"}</td>
+        <td>{account ? `${account.accountNumber}` : "waiting"}</td>
         <td>{account ? account.password : "waiting"}</td>
     </tr>
 }

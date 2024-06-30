@@ -20,6 +20,7 @@ export default function AccountsTable() {
                         <thead>
                             <tr>
                                 <th scope="col">challenge</th>
+                                <th scope="col">server</th>
                                 <th scope="col">number</th>
                                 <th scope="col">pass</th>
                             </tr>

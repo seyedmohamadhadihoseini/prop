@@ -9,7 +9,8 @@ export async function POST(request) {
         return Response.json({});
     }
     const xHeader = `${request.headers.get("x-nowpayments-sig")}`;
-    const notificationsKey = `${process.env.NOW_PAYMENT_IPN}`;
+    const config = await nowPaymentConfig();
+    const notificationsKey = config ? config.ipnKey : `${process.env.NOW_PAYMENT_IPN}`;
     const body = await request.text();
     const response = JSON.parse(body);
     const hmac = crypto.createHmac('sha512', notificationsKey);
@@ -24,7 +25,7 @@ export async function POST(request) {
         // const challengeId = parseInt(`${order_id}`);
         // const challenge = await GetChallengeById(challengeId);
         // const acc = await FindFistMT5Account(challenge.settingId);
-        
+
         await prisma.challenge.update({
             where: {
                 id: challengeId
@@ -37,6 +38,11 @@ export async function POST(request) {
     }
     console.log(`orderid:${order_id} and status=${status}`);
     return Response.json({});
+}
+async function nowPaymentConfig() {
+
+    const nowPayment = await prisma.nowPaymentConfig.findFirst();
+    return nowPayment
 }
 function sortObject(obj) {
     return Object.keys(obj).sort().reduce(

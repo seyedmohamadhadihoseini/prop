@@ -7,10 +7,14 @@ import { InvoiceReturn } from "@nowpaymentsio/nowpayments-api-js/src/actions/cre
 import { User } from "@prisma/client";
 import { redirect } from "next/navigation";
 
+async function nowPaymentConfig() {
 
-const npApi = new NowPaymentsApi({ apiKey: `${process.env.NOW_PAYMENT_APIKEY}` });
-
+    const nowPayment = await prisma.nowPaymentConfig.findFirst();
+    return nowPayment
+}
 export async function BuyChallenge(challengeModelId: number) {
+    const config = await nowPaymentConfig()
+    const npApi = new NowPaymentsApi({ apiKey: config ? config.apiKey : `${process.env.NOW_PAYMENT_APIKEY}` });
     const user: User = await CurrentUser();
     const challengeModel = await prisma.challengeSetting.findUnique({
         where: {
@@ -27,6 +31,7 @@ export async function BuyChallenge(challengeModelId: number) {
     });
     let inv = await npApi.createInvoice(
         {
+
             order_description: "pay for challenge",
             price_amount: challengeModel.price,
             price_currency: "usd", order_id: `${challenge.id}`,

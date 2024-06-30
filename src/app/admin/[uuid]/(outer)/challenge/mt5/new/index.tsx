@@ -33,6 +33,10 @@ export default function NewMT5() {
                         </select>
                     </div>
                     <div className="form-group">
+                        <label htmlFor="now-config-server">Server</label>
+                        <input type="text" name="acc-server" className="form-control" id="now-config-server" placeholder="Enter Server Name" />
+                    </div>
+                    <div className="form-group">
                         <label htmlFor="input-1">account number</label>
                         <input type="number" name="acc-no" className="form-control" id="input-1" placeholder="Enter Account number" />
                     </div>

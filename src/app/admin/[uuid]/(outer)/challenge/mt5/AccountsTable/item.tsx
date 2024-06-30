@@ -9,7 +9,8 @@ export default function Mt5Item({ mt5Acc }: { mt5Acc: MT5Account }) {
     }, [])
     return <tr>
         <td>{setting?.name}</td>
-        <td>{mt5Acc.accountNumber}</td>
+        <td>{mt5Acc.server}</td>
+        <td>{`${mt5Acc.accountNumber}`}</td>
         <td>{mt5Acc.password}</td>
     </tr>;
 }

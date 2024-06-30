@@ -8,14 +8,14 @@ export default async function SaveNewMt5Account(prevState: FormResultState, form
     const accNo = formData.get("acc-no") as string;
     const accPass = formData.get("acc-pass") as string;
     const setting = formData.get("setting") as string;
-
+    const server = formData.get("acc-server") as string;
     let result;
     let message = "successfully added";
     try {
 
         await prisma.mT5Account.create({
             data: {
-                accountNumber: parseInt(accNo),
+                accountNumber: accNo, server,
                 password: accPass, settingId: parseInt(setting)
             }
         })
@@ -23,7 +23,7 @@ export default async function SaveNewMt5Account(prevState: FormResultState, form
     }
     catch (error) {
         result = false;
-        message = "this account already exist";
+        message = `${error}`;
     }
 
     return {

@@ -1,6 +1,7 @@
 import CurrentUser from "@/functions/CurrentUser";
 import prisma from "@/services/singleton_prisma";
 import { User } from "@prisma/client";
+import AnalyzePartApp from "./analyze";
 
 export default async function ChallengeApp({ params }: { params: { id: string } }) {
     const { id } = params;
@@ -19,5 +20,6 @@ export default async function ChallengeApp({ params }: { params: { id: string } 
 
     return <div>
         {id}
+        {/* <AnalyzePartApp challenge={challenge} /> */}
     </div>
 }

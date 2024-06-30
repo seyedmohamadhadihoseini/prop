@@ -102,8 +102,8 @@ enum TicketLevel {
 }
 
 model MailConfiguration {
-  id Int @id @default(autoincrement())
-  host String 
+  id   Int    @id @default(autoincrement())
+  host String
   port Int
   user String
   pass String
@@ -134,18 +134,30 @@ model Challenge {
   user       User             @relation(references: [id], fields: [userId])
   isPaid     Boolean          @default(false)
   date       DateTime         @default(now())
-  MT5        Int?             @unique
+  MT5        String?             @unique
   mt5Account MT5Account?      @relation(references: [accountNumber], fields: [MT5])
 }
 
 model MT5Account {
-  accountNumber Int              @id
+  accountNumber String           @id
   password      String
-  balance       Decimal?
+  server        String           @default("MetaQuotes-Demo")
+  start_balance Decimal?
   isEnable      Boolean          @default(true)
   isFree        Boolean          @default(true)
   challengeId   Int?
   Challenge     Challenge?
   settingId     Int
   setting       ChallengeSetting @relation(references: [id], fields: [settingId])
+}
+
+model History {
+  username String
+  date     String
+  balance  Float
+  drawdown Float
+  loss     Float
+  profit   Float
+
+  @@id([username, date])
 }
