@@ -19,7 +19,7 @@ export default async function ChallengeApp({ params }: { params: { id: string } 
     }
 
     return <div>
-        {id}
-        {/* <AnalyzePartApp challenge={challenge} /> */}
+        {/* {id} */}
+        <AnalyzePartApp challenge={challenge} />
     </div>
 }

@@ -1,5 +1,23 @@
-.main{
+/* .main {
     border: 1px solid black;
     background-color: gray;
-    
+
+} */
+.card-container-header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.body-container {
+    /* display: grid;
+    grid-template-columns: 4fr ; */
+}
+
+.charts {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.cards-container {
+    display: block;
 }

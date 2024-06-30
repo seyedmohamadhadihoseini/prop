@@ -79,9 +79,9 @@ async function dayShiftBalance(username: string, shift: number) {
 
 export async function GetFromMT5(username: string) {
     
-    return {
-        balance: Math.random()>0.5?10000:9000, deals: 5
-    }
+    // return {
+    //     balance: Math.random()>0.5?10000:9000, deals: 5
+    // }
     const acc = await prisma.mT5Account.findUnique({
         where: {
             accountNumber: username
