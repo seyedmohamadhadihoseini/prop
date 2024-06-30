@@ -2,7 +2,7 @@
 const nextConfig = {
     experimental:{
         serverActions:{
-            allowedOrigins:["localhost:3013","https://my.algorixfinance.com"],
+            allowedOrigins:["localhost:3013","my.algorixfinance.com"],
             allowedForwardedHosts: ['localhost']
         }
     },
