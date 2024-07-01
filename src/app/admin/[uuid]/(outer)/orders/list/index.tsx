@@ -29,21 +29,21 @@ export default function OrdersList({ challenges }: { challenges: Challenge[] }) 
             <option value={"Paid"}>Paid</option>
         </select>
         <input type="text" className={style.filter} placeholder="enter user email" value={search}
-            onChange={e =>{ 
+            onChange={e => {
                 setSearch(e.target.value)
-                if(search.length ==0){
+                if (search.length == 0) {
                     setOrders(challenges)
                 }
             }}
             onKeyUp={(e) => {
-                setOrders(SearchUsersById(challenges,search));
+                setOrders(SearchUsersById(challenges, search));
             }}
         />
         <div className="row mt-3">
             <div className="col-lg-12">
                 <div className="card">
                     <div className="card-body">
-                        <h5 className="card-title">Basic Table</h5>
+                        <h5 className="card-title">Orders Table</h5>
                         <div className="table-responsive">
                             <table className="table" style={{
                                 textAlign: "center"
