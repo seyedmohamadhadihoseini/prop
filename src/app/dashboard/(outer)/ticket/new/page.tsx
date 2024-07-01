@@ -16,7 +16,7 @@ export default function NewTicketApp() {
         GetAllRelatedMT5Acc().then(setAccs);
     }, [])
     const displayCategories = categories.map(category => <option style={{ color: "black", backgroundColor: "white" }} key={category.name} value={category.name}>{category.name}</option>)
-    const displayAccountsOption = accs.map(acc => <option key={acc} value={acc}>{acc}</option>)
+    const displayAccountsOption = accs.map(acc => <option style={{ color: "black", backgroundColor: "white" }} key={acc} value={acc}>{acc}</option>)
     const [state, formAction] = useFormState(SendNewTicket, { id: 0, success: false, message: "" });
     const router = useRouter();
     useEffect(() => {
