@@ -9,23 +9,25 @@ import GetUsers from "./server";
 import Pagination from "@/components/pagination";
 import SearchUsersServer from "./search/server";
 import SeachUser from "./search";
+import { SearchUser } from "./functions";
 export default function UserList() {
     const [usersList, setUsersList] = useState<User[]>([]);
+    const [usersListCopy, setUsersListCopy] = useState<User[]>([]);
     const [skip, setSkip] = useState(0);
     const take = 10;
     useLayoutEffect(() => {
-        GetUsers(skip, take).then(setUsersList);
+        GetUsers(skip, take).then(result => {
+            setUsersList(result);
+            setUsersListCopy(result);
+        });
     }, [skip])
     const displayUser = usersList.map(user => <UserListItem user={user} key={user.id} />)
     const changeHandler = async (value: string) => {
-
-        setUsersList(await SearchUsersServer(value));
-
+        setUsersList(SearchUser(usersListCopy, value));
     }
     const keyUpHandler = async (value: string) => {
         if (value.length == 0) {
-
-            setUsersList(await SearchUsersServer(value));
+            setUsersList(SearchUser(usersListCopy, value));
         }
     }
 
