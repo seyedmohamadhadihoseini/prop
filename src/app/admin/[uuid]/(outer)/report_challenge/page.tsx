@@ -1,18 +1,23 @@
 "use client";
 
 import { useLayoutEffect, useState } from "react";
-import GetChallenges, { SearchUser } from "./server";
 import { Challenge } from "@prisma/client";
 import Pagination from "@/components/pagination";
 import ReportChallengeItem from "./item";
 import style from "./style.module.css";
+import { SearchChallengesByUserEmail } from "./functions";
+import GetChallenges from "./server";
 export default function ReportChallengeApp() {
     const take = 10;
     const [skip, setSkip] = useState(0);
     const [challenges, setChallenges] = useState<Challenge[]>([]);
+    const [CopyChallenges, setCopyChallenges] = useState<Challenge[]>([]);
     const [search, setSearch] = useState("");
     useLayoutEffect(() => {
-        GetChallenges(skip, take).then(setChallenges);
+        GetChallenges(skip, take).then(result => {
+            setChallenges(result);
+            setCopyChallenges(result);
+        });
     }, [skip]);
     const displayChallenges = challenges.map(ch => <ReportChallengeItem challenge={ch} key={ch.id} />)
     return <div>
@@ -20,7 +25,7 @@ export default function ReportChallengeApp() {
             <input type="text" className={style.filter} placeholder="enter user email" value={search}
                 onChange={e => setSearch(e.target.value)}
                 onKeyUp={async (e) => {
-                    setChallenges(await SearchUser(search));
+                    setChallenges(SearchChallengesByUserEmail(CopyChallenges, search));
                 }}
             />
             <div className="row mt-3">
@@ -28,7 +33,7 @@ export default function ReportChallengeApp() {
                     <div className="card">
                         <div className="">
                             <div className="table-responsive">
-                                <table className="table" style={{textAlign:"center"}}>
+                                <table className="table" style={{ textAlign: "center" }}>
                                     <thead>
                                         <tr>
                                             <th scope="col">id</th>
@@ -48,7 +53,7 @@ export default function ReportChallengeApp() {
                     </div>
                 </div>
             </div>
-         
+
         </div>
         <Pagination setSkip={setSkip} skip={skip} take={take} />
     </div>

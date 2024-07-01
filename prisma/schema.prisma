@@ -72,7 +72,7 @@ model TicketCategory {
 
 model Ticket {
   id            Int             @id @default(autoincrement())
-  accountNumber Int
+  accountNumber String
   title         String
   content       String
   userId        Int

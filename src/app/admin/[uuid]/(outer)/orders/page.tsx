@@ -1,25 +1,17 @@
-"use client"
 import { useState } from "react";
 import style from "./style.module.css";
 import OrdersList from "./list";
+import prisma from "@/services/singleton_prisma";
 
-export default function OrdersApp() {
+export default async function OrdersApp() {
 
-    const [status, setStatus] = useState<any>("All");
+    const challenges = await prisma.challenge.findMany({include:{setting:true,user:true}});
 
     return <div className={style.main}>
-        <select onChange={e => {
-            setStatus(e.target.value);
-        }}>
-            <option value={"All"}>All</option>
-            <option value={"Pending"}>Pending</option>
-            <option value={"Paid"}>Paid</option>
-        </select>
-        <div className="order-list">
-            
-            <OrdersList status={status} />
-        </div>
 
+        <div className="order-list">
+            <OrdersList  challenges={challenges} />
+        </div>
 
     </div>
 }

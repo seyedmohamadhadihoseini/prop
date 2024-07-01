@@ -8,6 +8,8 @@ export default async function GetFreeMT5Accounts() {
     return await prisma.mT5Account.findMany({
         where: {
             isFree: true
+        },include:{
+            setting:true
         }
     })
 

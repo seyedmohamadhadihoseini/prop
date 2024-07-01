@@ -42,10 +42,14 @@
 .select-status select{
     padding: 8px;
     color: black;
-    width: 50%;
+    width: 100%;
     font-size: medium;
 }
 .select-status select option{
     padding: 8px;
     background-color: antiquewhite;
+}
+.tr-ticket-container{
+    border-radius: 8px;
+    cursor: pointer;
 }

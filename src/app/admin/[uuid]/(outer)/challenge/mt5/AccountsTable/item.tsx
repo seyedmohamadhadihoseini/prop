@@ -1,16 +1,12 @@
-import { ChallengeSetting, MT5Account } from "@prisma/client";
-import { useLayoutEffect, useState } from "react";
-import { GetChallengeSettingById } from "./server";
+import { MT5Account } from "@prisma/client";
 
-export default function Mt5Item({ mt5Acc }: { mt5Acc: MT5Account }) {
-    const [setting, setSetting] = useState<ChallengeSetting | null>();
-    useLayoutEffect(() => {
-        GetChallengeSettingById(mt5Acc.settingId).then(setSetting);
-    }, [])
+
+export default function Mt5Item({ mt5Acc }: { mt5Acc: MT5Account|any }) {
+    
     return <tr>
-        <td>{setting?.name}</td>
+        <td>{mt5Acc.setting?.name}</td>
         <td>{mt5Acc.server}</td>
-        <td>{`${mt5Acc.accountNumber}`}</td>
+        <td>{mt5Acc.accountNumber}</td>
         <td>{mt5Acc.password}</td>
     </tr>;
 }

@@ -10,16 +10,14 @@ import { User } from "@prisma/client";
 export default async function SendNewTicket(prevState: FormResultState, formData: FormData) {
 
     let result = false;
-
-
-    const accountNumber = parseInt(formData.get("account-number") as string);
+    const accountNumber = formData.get("account-number") as string;
     const title = formData.get("title") as string;
     const content = formData.get("content") as string;
     const category = formData.get("category") as string;
 
     const attachedFile = formData.get("attached-file") as File;
     const fileName = await SaveFileToPublicDir(attachedFile, "ticket_file");
-    
+
     await StoreNewTicketToDb(accountNumber, content, title, fileName, category);
     result = true;
 
@@ -30,7 +28,7 @@ export default async function SendNewTicket(prevState: FormResultState, formData
         message: result ? "successfully send" : "error exists"
     }
 }
-async function StoreNewTicketToDb(accountNumber: number, content: string, title: string, attachedFile: string | null, category: string) {
+async function StoreNewTicketToDb(accountNumber: string, content: string, title: string, attachedFile: string | null, category: string) {
     const user: User = await CurrentUser();
     const ticket = await prisma.ticket.create({
         data: {
@@ -46,3 +44,13 @@ async function StoreNewTicketToDb(accountNumber: number, content: string, title:
 export async function GetAllTicketCategoris() {
     return await prisma.ticketCategory.findMany();
 }
+export async function GetAllRelatedMT5Acc() {
+
+    const user: User = await CurrentUser();
+    const challenges = await prisma.challenge.findMany({
+        where: {
+            userId: user.id
+        }
+    });
+    return challenges.map(ch => ch.MT5 || "");
+} 
