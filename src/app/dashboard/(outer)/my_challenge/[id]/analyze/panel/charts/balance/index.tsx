@@ -56,5 +56,7 @@ export default function App({ x_data, y_data }: { x_data: any, y_data: any }) {
       },
     ],
   };
-  return <Line options={options} data={data} />;
+  return <div style={{ backgroundColor: "rgb(40, 38, 36)" }}>
+    <Line options={options} data={data} />;
+  </div>
 }
