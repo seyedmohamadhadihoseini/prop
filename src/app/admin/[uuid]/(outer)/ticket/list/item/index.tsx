@@ -10,11 +10,11 @@ export default function TicketItem({ ticket }: { ticket: Ticket }) {
     const router = useRouter();
     const pathname = usePathname();
 
-    return <tr onClick={e => {
-        router.push(`${pathname}/${ticket.id}`)
-    }} className={`tr-ticket-container ${status}`}>
+    return <tr className={`tr-ticket-container ${status}`}>
         <th scope="row">{ticket.id}</th>
-        <td>{ticket.title}</td>
+        <td style={{ cursor: "pointer" }} onClick={e => {
+            router.push(`${pathname}/${ticket.id}`)
+        }}>{ticket.title}</td>
         <td><span className="account-number">{ticket.accountNumber}</span></td>
         <td>{ticket.categoryName}</td>
         <td>
