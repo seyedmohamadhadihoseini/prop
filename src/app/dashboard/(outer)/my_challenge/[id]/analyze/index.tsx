@@ -1,7 +1,6 @@
 
 
 import { Challenge } from "@prisma/client";
-import { useEffect } from "react";
 import { GetFromMT5, GetUserHistory, SetNewHistoryRecord, UpdateTodayRecord } from "./server";
 import AnalyzePanel from "./panel";
 

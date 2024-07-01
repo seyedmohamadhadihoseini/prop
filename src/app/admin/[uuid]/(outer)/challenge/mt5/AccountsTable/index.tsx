@@ -9,8 +9,9 @@ export default function AccountsTable() {
     const [accounts, setAccounts] = useState<MT5Account[]>([]);
     useLayoutEffect(() => {
         GetFreeMT5Accounts().then(setAccounts);
-    }, [])
-    const displayAccounts = accounts.map(acc => <Mt5Item mt5Acc={acc} />)
+    }, []);
+    
+    const displayAccounts = accounts.map(acc => <Mt5Item key={acc.accountNumber} mt5Acc={acc} />)
     return <div className="col-lg-12" style={{textAlign:"center"}}>
         <div className="card">
             <div className="card-body">

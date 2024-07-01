@@ -28,7 +28,7 @@ export default function TicketCategorySetting() {
 
         }
     }, [ticketCategory])
-    const displayTicketCategories = ticketCategories.map(c => <TicketCategoryOption name={c.name} />)
+    const displayTicketCategories = ticketCategories.map(c => <TicketCategoryOption key={c.name} name={c.name} />)
     return <div className={style["main-container"]}>
         <div className={style["set-category-container"]}>
             <h3>Ticket Categories</h3>

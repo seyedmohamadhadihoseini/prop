@@ -12,7 +12,7 @@ export default function TicketListClient({ ticketType }: { ticketType: string })
         })
     }, [ticketType]);
     const displayTickets = tickets?.map(ticket => {
-        return <TicketItem ticket={ticket} />
+        return <TicketItem key={ticket.id} ticket={ticket} />
     })
     return <div className="ticket-list">
      

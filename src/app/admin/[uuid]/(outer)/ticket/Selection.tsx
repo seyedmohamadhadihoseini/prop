@@ -14,7 +14,7 @@ export default function SelectionTicket
         GetAllTicketCategoris().then(setCategories);
     }, [])
     const displayTicketCategories = categories.map(category => {
-        return <option>{category.name}</option>
+        return <option key={category.name}>{category.name}</option>
     })
     return <div className={style["main-container"]}>
         <div >
@@ -34,7 +34,7 @@ export default function SelectionTicket
             </select>
         </div>
         <div className={style["user-email"]}>
-            <label htmlFor="admin-user-email">search by user's email :</label>
+            <label htmlFor="admin-user-email">search by user&apos;s email :</label>
             <input type="text" value={email} name="search-filter" id="admin-user-email" onChange={e => setEmail(e.target.value)} />
         </div>
     </div >

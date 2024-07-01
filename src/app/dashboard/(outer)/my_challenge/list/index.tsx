@@ -23,7 +23,7 @@ export default async function ChallengesList() {
                 UpdateTodayRecord(i.MT5 || "");
             }, 1000 * 60 * 60 * 12)
         }
-        return <ChallengeItem challenge={i} />
+        return <ChallengeItem key={i.id} challenge={i} />
     })
 
     return <MyChallengeTable displayList={displayList} />

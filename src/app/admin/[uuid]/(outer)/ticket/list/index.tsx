@@ -13,7 +13,7 @@ export default function TicketListAdmin({ ticketStatus, category, email }: { tic
         GetTickets(category, ticketStatus, email, skip, take).then(setTickets);
     }, [ticketStatus, category, email, skip, take]);
     const displayTickets = tickets?.map(ticket => {
-        return <TicketItem ticket={ticket} />
+        return <TicketItem ticket={ticket} key={ticket.id} />
     })
 
     return <div className="ticket-list">

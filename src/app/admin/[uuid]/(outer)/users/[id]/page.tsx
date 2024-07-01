@@ -21,7 +21,7 @@ export default async function UserDetailForAdmin({ params }: { params: { id: str
         { title: "telephone", content: user.telephone || "" },
         { title: "Verification Status", content: verificationStatus },
         { title: "BirthDate", content: user.brithDate?.toDateString() || "" },
-    ].map(item => <InformationElement title={item.title} content={item.content} />)
+    ].map(item => <InformationElement key={item.title} title={item.title} content={item.content} />)
     return <div>
         <div className="user-header">
             <Image

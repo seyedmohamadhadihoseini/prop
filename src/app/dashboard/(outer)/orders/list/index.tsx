@@ -8,7 +8,7 @@ export default function OrdersList({ status }: { status: "All" | "Paid" | "Pendi
     useLayoutEffect(() => {
         GetOrders(status).then(ros => {
             setOrders(ros.map(r =>
-                <OrderListItem challenge={r} />
+                <OrderListItem key={r.id} challenge={r} />
             ))
 
         });

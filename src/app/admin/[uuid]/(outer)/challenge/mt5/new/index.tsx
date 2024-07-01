@@ -21,7 +21,7 @@ export default function NewMT5() {
     useEffect(() => {
         GetAllChallengeSetting().then(setModels);
     }, [])
-    const displayModels = models.map(model => <option value={model.id}>{model.name}</option>)
+    const displayModels = models.map(model => <option key={model.id} value={model.id}>{model.name}</option>)
 
     return <div className="col-lg-12" style={{ backgroundColor: "blue" }}>
         <div className="card">

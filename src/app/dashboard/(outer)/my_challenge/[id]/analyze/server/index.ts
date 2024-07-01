@@ -92,6 +92,7 @@ export async function GetFromMT5(username: string) {
     }
     const mt5Ip = `${process.env.MT5_ADDRESS}/${acc.server}/${acc.accountNumber}/${acc.password}`;
     const response = await fetch(mt5Ip,{next:{revalidate:3600}});
+    console.log(response);
     if (!response.ok) {
         return false;
     }

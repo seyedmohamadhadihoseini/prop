@@ -19,7 +19,7 @@ export default function OrdersList({ challenges }: { challenges: Challenge[] }) 
             setOrders(challenges.filter(ch => ch.isPaid));
         }
     }, [status]);
-    const displayOrders = orders.map(order => <OrderListItem challenge={order} />)
+    const displayOrders = orders.map(order => <OrderListItem key={order.id} challenge={order} />)
     return <div className={style.main}>
         <select onChange={e => {
             setStatus(e.target.value);

@@ -18,10 +18,10 @@ export default function AcceptRuleCheck({ paymentRef }: { paymentRef: RefObject<
                         chatH?.scrollTo(0, chatH?.scrollHeight);
                     }, 1000);
                 }} />
-                <label htmlFor="user-checkbox1">I read and Agree  '
+                <label htmlFor="user-checkbox1">I read and Agree  &apos;
                     <Link href="/dashboard/rules" style={{ color: "red" }}>
                         Terms & Conditions
-                    </Link>'
+                    </Link>&apos;
                 </label>
             </div>
         </div>

@@ -38,7 +38,7 @@ export default async function RefferalChallengeTable() {
             <div className="card">
                 <div className="card-body">
                     <h5 className="card-title">
-                        referral's Challenges
+                        referral&apos;s Challenges
                     </h5>
                     <p style={{textAlign:"center"}}>total price:{AllPrice}$</p>
                     <div className="table-responsive">
