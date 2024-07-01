@@ -15,7 +15,7 @@ export default function NewTicketApp() {
         GetAllTicketCategoris().then(setCategories);
         GetAllRelatedMT5Acc().then(setAccs);
     }, [])
-    const displayCategories = categories.map(category => <option key={category.name} value={category.name}>{category.name}</option>)
+    const displayCategories = categories.map(category => <option style={{ color: "black", backgroundColor: "white" }} key={category.name} value={category.name}>{category.name}</option>)
     const displayAccountsOption = accs.map(acc => <option key={acc} value={acc}>{acc}</option>)
     const [state, formAction] = useFormState(SendNewTicket, { id: 0, success: false, message: "" });
     const router = useRouter();
@@ -47,7 +47,7 @@ export default function NewTicketApp() {
 
             <div className='item-form'>
                 <label htmlFor="">category:</label>
-                <select name="category">
+                <select name="category" style={{ color: "white" }}>
                     {displayCategories}
                 </select>
             </div>

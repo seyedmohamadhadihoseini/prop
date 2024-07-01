@@ -1,15 +1,19 @@
-#ticket-header-container{
+#ticket-header-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: max-content;
 }
-#ticket-header-container button{
+
+#ticket-header-container button {
     width: max-content;
 }
-#ticket-type{
+
+#ticket-type {
     color: black;
     background-color: white;
+    width: fit-content;
 }
-#ticket-type option{
+
+#ticket-type option {
     color: wheat;
 }
